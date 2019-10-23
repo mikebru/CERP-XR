@@ -23,22 +23,23 @@ public class InteractiveMap_State : MonoBehaviour
     {
         int buoyCout = (int)Mathf.Abs(placedBuoy);
 
-        if(placedBuoy == 0)
-        {
-            for(int i=0; i< BuoyData.Length; i++)
+            if (placedBuoy == 0)
             {
-                BuoyData[i] = false;
+                for (int i = 0; i < BuoyData.Length; i++)
+                {
+                    BuoyData[i] = false;
+                }
             }
-        }
 
-        if(placedBuoy > 0)
-        {
-            BuoyData[buoyCout] = true;
-        }
-        else
-        {
-            BuoyData[buoyCout] = false;
-        }
+            if (placedBuoy > 0)
+            {
+                BuoyData[buoyCout-1] = true;
+            }
+            else
+            {
+                BuoyData[buoyCout+1] = false;
+            }
+        
     }
 
 }
