@@ -10,7 +10,7 @@ public class Camera_RayCast : MonoBehaviour
     public GameObject[] Walls;
     public Camera[] CaptureCameras;
 
-
+    public InteractiveUI currentUI;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,14 @@ public class Camera_RayCast : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            if(currentUI != null)
+            {
+                currentUI.OnClick();
+            }
+        }
+
+
+       
             Ray ray = local_cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
@@ -30,19 +38,13 @@ public class Camera_RayCast : MonoBehaviour
             if(Physics.Raycast(ray, out hit))
             {
                 Vector3 hitPosition = hit.point - hit.transform.position;
-
-                Debug.Log(hitPosition.x);
-
                 //change axis
                 if (hitPosition.x <= .025f && hitPosition.x >= -.025f)
                 {
-                    Debug.Log("here");
+                    //Debug.Log("here");
                     hitPosition = new Vector3(hitPosition.z, hitPosition.y, 0);
                 }
-
-                print(hitPosition);
-
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red, 10);
+                //Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red, 10);
 
                 //re-project cast
                 for (int i = 0; i < Walls.Length; i++)
@@ -55,13 +57,27 @@ public class Camera_RayCast : MonoBehaviour
 
                         if (Physics.Raycast(origin, CaptureCameras[i].transform.forward, out cam_hit))
                         {
-                            Debug.DrawRay(origin, CaptureCameras[i].transform.forward * cam_hit.distance, Color.green, 10);
+                            //Debug.DrawRay(origin, CaptureCameras[i].transform.forward * cam_hit.distance, Color.green, 10);
+
+                            if(cam_hit.collider.gameObject.GetComponent<InteractiveUI>() != null && currentUI != cam_hit.collider.gameObject.GetComponent<InteractiveUI>())
+                            {
+                                currentUI = cam_hit.collider.gameObject.GetComponent<InteractiveUI>();
+                                currentUI.OnHoverEnter();
+                            }
+                            else if(currentUI != null && cam_hit.collider.gameObject.GetComponent<InteractiveUI>() == null)
+                            {
+                                currentUI.OnHoverExit();
+                                currentUI = null;
+                            }
 
                         }
+                        else if(currentUI != null)
+                        {
+                            currentUI.OnHoverExit();
+                            currentUI = null;
+                        }
                     }
-                }
-            }
-
+                }         
         }
 
 
