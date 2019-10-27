@@ -77,8 +77,13 @@ public class Camera_RayCast : MonoBehaviour
                             currentUI = null;
                         }
                     }
-                }         
-        }
+                }
+             }
+            else if (currentUI != null)
+            {
+                currentUI.OnHoverExit();
+                currentUI = null;
+            }
 
 
 
