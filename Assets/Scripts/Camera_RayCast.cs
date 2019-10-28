@@ -61,6 +61,11 @@ public class Camera_RayCast : MonoBehaviour
 
                             if(cam_hit.collider.gameObject.GetComponent<InteractiveUI>() != null && currentUI != cam_hit.collider.gameObject.GetComponent<InteractiveUI>())
                             {
+                                if (currentUI != null)
+                                {
+                                    currentUI.OnHoverExit();
+                                }
+
                                 currentUI = cam_hit.collider.gameObject.GetComponent<InteractiveUI>();
                                 currentUI.OnHoverEnter();
                             }
