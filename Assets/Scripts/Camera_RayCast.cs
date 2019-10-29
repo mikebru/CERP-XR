@@ -10,6 +10,9 @@ public class Camera_RayCast : MonoBehaviour
     public GameObject[] Walls;
     public Camera[] CaptureCameras;
 
+
+    public GameObject cursor;
+
     public InteractiveUI currentUI;
 
     // Start is called before the first frame update
@@ -55,11 +58,14 @@ public class Camera_RayCast : MonoBehaviour
 
                         Vector3 origin = CaptureCameras[i].transform.position + hitPosition;
 
-                        if (Physics.Raycast(origin, CaptureCameras[i].transform.forward, out cam_hit))
-                        {
-                            //Debug.DrawRay(origin, CaptureCameras[i].transform.forward * cam_hit.distance, Color.green, 10);
 
-                            if(cam_hit.collider.gameObject.GetComponent<InteractiveUI>() != null && currentUI != cam_hit.collider.gameObject.GetComponent<InteractiveUI>())
+
+                    if (Physics.Raycast(origin, CaptureCameras[i].transform.forward, out cam_hit))
+                        {
+                        //Debug.DrawRay(origin, CaptureCameras[i].transform.forward * cam_hit.distance, Color.green, 10);
+                        cursor.transform.position = cam_hit.point - new Vector3(0, 0, .1f);
+
+                        if (cam_hit.collider.gameObject.GetComponent<InteractiveUI>() != null && currentUI != cam_hit.collider.gameObject.GetComponent<InteractiveUI>())
                             {
                                 if (currentUI != null)
                                 {

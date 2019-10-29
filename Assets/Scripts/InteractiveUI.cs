@@ -15,23 +15,23 @@ public class InteractiveUI : MonoBehaviour
         
     }
 
-    public void OnHoverEnter()
+    public virtual void OnHoverEnter()
     {
         OnHoverEnterEvent.Invoke();
-        Debug.Log("Hovered");
+        //Debug.Log("Hovered");
     }
 
-    public void OnHoverExit()
+    public virtual void OnHoverExit()
     {
         OnHoverExitEvent.Invoke();
-        Debug.Log("Hovered Off");
+        //Debug.Log("Hovered Off");
 
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
         OnClickEvent.Invoke();
-        Debug.Log("Clicked");
+        //Debug.Log("Clicked");
     }
 
 }
