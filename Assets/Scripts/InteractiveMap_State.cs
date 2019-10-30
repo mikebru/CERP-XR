@@ -21,15 +21,9 @@ public class InteractiveMap_State : MonoBehaviour
 
     public void SetBuoy(float placedBuoy)
     {
-        int buoyCout = (int)Mathf.Abs(placedBuoy);
 
-            if (placedBuoy == 0)
-            {
-                for (int i = 0; i < BuoyData.Length; i++)
-                {
-                    BuoyData[i] = false;
-                }
-            }
+        //Debug.Log(placedBuoy);
+        int buoyCout = (int)Mathf.Abs(placedBuoy);
 
             if (placedBuoy > 0)
             {
@@ -37,7 +31,7 @@ public class InteractiveMap_State : MonoBehaviour
             }
             else
             {
-                BuoyData[buoyCout+1] = false;
+                BuoyData[buoyCout-1] = false;
             }
         
     }

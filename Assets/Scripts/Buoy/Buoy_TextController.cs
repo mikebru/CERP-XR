@@ -9,17 +9,22 @@ public class Buoy_TextController : MonoBehaviour
     public TextMesh[] textDisplays;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
-        
+        displayChildren(false);
     }
 
-   
+    public void displayChildren(bool isOn)
+    {
+        transform.GetChild(0).gameObject.SetActive(isOn);
+    }
 
     public void setTextDisplays()
     {
+        displayChildren(true);
+
+
         textDisplays[0].text = selectedBuoy.buoyInfo.name;
         textDisplays[1].text = "Date:   " + selectedBuoy.buoyInfo.date;
         textDisplays[2].text = "Location:   " + selectedBuoy.buoyInfo.location;
