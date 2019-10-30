@@ -33,6 +33,8 @@ public class Buoy_Object : InteractiveUI
     private TextMesh text;
     private Buoy_TextController TextDisplay;
 
+    public Color deactiveColor;
+    public Color activeColor;
 
     // Start is called before the first frame update
     void Start()
@@ -67,13 +69,13 @@ public class Buoy_Object : InteractiveUI
 
         if(status == true)
         {
-            GetComponent<SpriteRenderer>().color = Color.yellow;
-            text.color = Color.yellow;
+            GetComponent<SpriteRenderer>().color = activeColor;
+            text.color = activeColor;
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = Color.red;
-            text.color = Color.red;
+            GetComponent<SpriteRenderer>().color = deactiveColor;
+            text.color = deactiveColor;
 
         }
 
