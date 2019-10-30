@@ -55,6 +55,8 @@ public class Buoy_Object : InteractiveUI
 
     public void SetTextActive(bool isOn)
     {
+        text.text = buoyInfo.name;
+
         text.gameObject.SetActive(isOn);
     }
 
