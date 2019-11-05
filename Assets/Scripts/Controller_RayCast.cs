@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Valve.VR;
 public class Controller_RayCast : MonoBehaviour
 {
+
+    public SteamVR_Action_Boolean GrabPinch;
+    public SteamVR_Input_Sources handType;
 
     Camera local_cam;
 
@@ -17,8 +20,31 @@ public class Controller_RayCast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        GrabPinch.AddOnStateDownListener(TriggerDown, handType);
+        GrabPinch.AddOnStateUpListener(TriggerUp, handType);
+
         local_cam = this.GetComponent<Camera>();
     }
+
+
+    public void TriggerUp(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        //Debug.Log("Trigger is up");
+        //Sphere.GetComponent<MeshRenderer>().enabled = false;
+    }
+    
+    public void TriggerDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+        //Debug.Log("Trigger is down");
+        //Sphere.GetComponent<MeshRenderer>().enabled = true;
+
+        if (currentUI != null)
+        {
+            currentUI.OnClick();
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
