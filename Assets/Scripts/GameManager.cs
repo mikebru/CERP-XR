@@ -64,10 +64,10 @@ public class GameManager : MonoBehaviour
                     Debug.Log("we did it!!!");
 
                     calibrationFeedback.color = Color.cyan;
-                    calibrationFeedback.text = "Calibration Complete";
+                    calibrationFeedback.text = "Calibration     Complete!";
 
                     calibrationFeedback_Map.color = Color.cyan;
-                    calibrationFeedback_Map.text = "Calibration Complete";
+                    calibrationFeedback_Map.text = "Calibration Complete!";
                 }
                 else
                 {
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
 
                     //feedback
                     calibrationFeedback.color = Color.green;
-                    calibrationFeedback.text = "Successful Calibration!";
+                    calibrationFeedback.text = "Successful     Calibration!";
 
                     calibrationFeedback_Map.color = Color.green;
                     calibrationFeedback_Map.text = "Successful Calibration!";
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
             {
                 //feedback
                 calibrationFeedback.color = Color.red;
-                calibrationFeedback.text = "Failed Calibration!";
+                calibrationFeedback.text = "Failed     Calibration!";
 
                 calibrationFeedback_Map.color = Color.red;
                 calibrationFeedback_Map.text = "Failed Calibration!";

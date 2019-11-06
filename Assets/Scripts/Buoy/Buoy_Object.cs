@@ -70,12 +70,12 @@ public class Buoy_Object : InteractiveUI
         if(status == true)
         {
             GetComponent<SpriteRenderer>().color = activeColor;
-            text.color = activeColor;
+            //text.color = activeColor;
         }
         else
         {
             GetComponent<SpriteRenderer>().color = deactiveColor;
-            text.color = deactiveColor;
+            //text.color = deactiveColor;
 
         }
 
