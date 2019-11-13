@@ -11,27 +11,39 @@ public class GameManager : MonoBehaviour
     public string[] correctBuoyNames;
     public InteractiveMap_State physicalState;
 
-    private Buoy_TextController currentDisplay;
+    public Buoy_TextController currentDisplay;
 
     public TextMesh calibrationFeedback;
     public TextMesh calibrationFeedback_Map;
 
     public UnityEvent[] placementEvents;
 
+    public int currentState;
+    public UnityEvent[] stateEvents;
     // Start is called before the first frame update
     void Start()
     {
-        currentDisplay = FindObjectOfType<Buoy_TextController>();
+       // currentDisplay = FindObjectOfType<Buoy_TextController>();
 
 
         calibrationFeedback_Map.color = Color.red;
-        calibrationFeedback_Map.text = "Calibrate Buoy: " + correctBuoyNames[BuoysPlaced];
+        calibrationFeedback_Map.text = "Calibrate \nBuoy:\n" + correctBuoyNames[BuoysPlaced];
     }
 
 
     public void CalibrationClicked()
     {
         CheckPlacement(currentDisplay.selectedBuoy);
+    }
+
+    public void GameState(int newState)
+    {
+
+      currentState = newState;
+      print(currentState);
+        stateEvents[currentState].Invoke();
+
+
     }
 
     public void CheckPlacement(Buoy_Object calibratedBuoy)
@@ -67,7 +79,7 @@ public class GameManager : MonoBehaviour
                     calibrationFeedback.text = "Calibration     Complete!";
 
                     calibrationFeedback_Map.color = Color.cyan;
-                    calibrationFeedback_Map.text = "Calibration Complete!";
+                    calibrationFeedback_Map.text = "Calibration \nComplete!";
                 }
                 else
                 {
@@ -78,7 +90,7 @@ public class GameManager : MonoBehaviour
                     calibrationFeedback.text = "Successful     Calibration!";
 
                     calibrationFeedback_Map.color = Color.green;
-                    calibrationFeedback_Map.text = "Successful Calibration!";
+                    calibrationFeedback_Map.text = "Successful \nCalibration!";
 
                     StartCoroutine(feedbackTimer());
                 }
@@ -92,7 +104,7 @@ public class GameManager : MonoBehaviour
                 calibrationFeedback.text = "Failed     Calibration!";
 
                 calibrationFeedback_Map.color = Color.red;
-                calibrationFeedback_Map.text = "Failed Calibration!";
+                calibrationFeedback_Map.text = "Failed \nCalibration!";
 
                 StartCoroutine(feedbackTimer());
 
@@ -110,7 +122,7 @@ public class GameManager : MonoBehaviour
             calibrationFeedback.text = "";
 
             calibrationFeedback_Map.color = Color.red;
-            calibrationFeedback_Map.text = "Locate Buoy: " + correctBuoyNames[BuoysPlaced];
+            calibrationFeedback_Map.text = "Calibrate \nBuoy:\n" + correctBuoyNames[BuoysPlaced];
 
         }
 
