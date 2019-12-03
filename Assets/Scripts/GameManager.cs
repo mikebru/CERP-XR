@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,26 @@ public class GameManager : MonoBehaviour
         calibrationFeedback_Map.color = Color.red;
         calibrationFeedback_Map.text = "Calibrate \nBuoy:\n" + correctBuoyNames[BuoysPlaced];
     }
+
+
+    public void SceneReset()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
+    private void OnValidate()
+    {
+        
+
+        if (BuoysPlaced > 0 || currentState > 0)
+        {
+            placementEvents[BuoysPlaced - 1].Invoke();
+
+            GameState(currentState);
+        }
+    }
+
 
 
     public void CalibrationClicked()
